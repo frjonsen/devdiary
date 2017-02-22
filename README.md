@@ -14,6 +14,7 @@ asd
 
 ## Colors
 
-<div background-color="#CAEBF2">
-    <span>SKY #CAEBF2</span>
-</div>
+<img src="mockup_assets/color_svgs/carbon.svg"></img>
+<img src="mockup_assets/color_svgs/sky.svg"></img>
+<img src="mockup_assets/color_svgs/watermelon.svg"></img>
+<img src="mockup_assets/color_svgs/neutral.svg"></img>

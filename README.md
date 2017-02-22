@@ -14,7 +14,7 @@ asd
 
 ## Colors
 
-<img src="mockup_assets/color_svgs/carbon.svg"></img>
-<img src="mockup_assets/color_svgs/sky.svg"></img>
-<img src="mockup_assets/color_svgs/watermelon.svg"></img>
-<img src="mockup_assets/color_svgs/neutral.svg"></img>
+<img src="https://dummyimage.com/360x100/a9a9a9/ffffff.png&text=Carbon+0xA9A9A9"></img>
+<img src="https://dummyimage.com/360x100/caebf2/635363.png&text=Sky+0xCAEBF2"></img>
+<img src="https://dummyimage.com/360x100/ff3b3e/ffffff.png&text=Watermelon+0xFF3B3F"></img>
+<img src="https://dummyimage.com/360x100/efefef/635463.png&text=Neutral+0xEFEFEF"></img>

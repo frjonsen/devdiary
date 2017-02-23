@@ -8,6 +8,16 @@
 - login, so site can be public
 - share entry/diary by url
 asd
+
+# Backend needs
+- Login
+- Create new project
+- Create new post (containing title, auto-date, keywords, content as markup)
+- Edit post
+- Filter on keywords (all projects / within project)
+- Go to date
+- Image upload, possibly with imgur integration to reduce storage
+
 ## Plugins
 
 - https://github.com/showdownjs/showdown

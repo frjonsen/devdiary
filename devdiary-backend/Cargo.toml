@@ -1,0 +1,19 @@
+[package]
+name = "devdiary-backend"
+version = "0.1.0"
+authors = ["Fredrik Jonsén <fredrikjonsen@gmail.com>"]
+
+[dependencies]
+time = "0.1.36"
+slog = "*"
+slog-stream = "*"
+slog-stdlog = "*"
+config = "*"
+log = "*"
+lazy_static = "0.2.2"
+
+[dependencies.iron]
+version = "*"
+
+[dependencies.logger]
+git = "https://github.com/iron/logger.git"

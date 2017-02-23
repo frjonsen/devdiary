@@ -1,0 +1,4 @@
+[logging]
+file = "server.log"
+format = "Uri: {uri}, Method: {method}, Status: {status}, Duration: {response-time}, Time: {request-time}"
+t  = [12, 34, 0, -2]

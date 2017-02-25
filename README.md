@@ -7,7 +7,6 @@
 
 - login, so site can be public
 - share entry/diary by url
-asd
 
 # Backend needs
 - Login
@@ -31,4 +30,5 @@ asd
 
 # Dependencies
 ## Postgre
-- pgcrypt: Comes preinstalled with the windows version; postgresql-contrib-\<version\> on linux.
+On Linux, may have to install contrib library: postgresql-contrib-\<version\>
+- pgcrypto

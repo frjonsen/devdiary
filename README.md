@@ -18,7 +18,7 @@ asd
 - Go to date
 - Image upload, possibly with imgur integration to reduce storage
 
-## Plugins
+## Possible plugins
 
 - https://github.com/showdownjs/showdown
 
@@ -28,3 +28,7 @@ asd
 <img src="https://dummyimage.com/360x100/caebf2/635363.png&text=Sky+0xCAEBF2"></img>
 <img src="https://dummyimage.com/360x100/ff3b3e/ffffff.png&text=Watermelon+0xFF3B3F"></img>
 <img src="https://dummyimage.com/360x100/efefef/635463.png&text=Neutral+0xEFEFEF"></img>
+
+# Dependencies
+## Postgre
+- pgcrypt: Comes preinstalled with the windows version; postgresql-contrib-\<version\> on linux.

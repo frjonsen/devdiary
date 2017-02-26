@@ -1,10 +1,8 @@
-extern crate time;
 use iron::prelude::*;
 use iron::{BeforeMiddleware,AfterMiddleware, typemap};
-use time::precise_time_ns;
 use logger::{Logger, Format};
-
-pub struct Server{ }
+use default_config::DefaultConfig;
+pub struct Server;
 
 struct ResponseTime;
 
@@ -12,14 +10,14 @@ impl typemap::Key for ResponseTime { type Value = u64; }
 
 impl BeforeMiddleware for ResponseTime {
     fn before(&self, req: &mut Request) -> IronResult<()> {
-        req.extensions.insert::<ResponseTime>(precise_time_ns());
+        req.extensions.insert::<ResponseTime>(super::time::precise_time_ns());
         Ok(())
     }
 }
 
 impl AfterMiddleware for ResponseTime {
     fn after(&self, req: &mut Request, res: Response) -> IronResult<Response> {
-        let delta = precise_time_ns() - req.extensions.get::<ResponseTime>().unwrap();
+        let delta = super::time::precise_time_ns() - req.extensions.get::<ResponseTime>().unwrap();
         println!("Request took: {} ms", (delta as f64) / 1000000.0);
         Ok(res)
     }
@@ -49,6 +47,20 @@ impl Server {
     }
 
     pub fn start(&self) {
-        Iron::new(self.make_chain()).http("localhost:3000").unwrap();
+        let server = Iron::new(self.make_chain());
+        if let Some(identity) = super::CONFIG.read().unwrap().get_str("tls.p12") {
+            use hyper_native_tls::NativeTlsServer;
+            use std::path::Path;
+
+            let p = Path::new(&identity);
+            // openssl req -x509 -newkey rsa:4096 -nodes -keyout localhost.key -out localhost.crt -days 3650
+            // openssl pkcs12 -export -out identity.p12 -inkey localhost.key -in localhost.crt --password mypass
+            let ssl = NativeTlsServer::new(p, "").unwrap();
+            server.https("localhost:3000", ssl);
+        }
+        else {
+            server.http("localhost:3000").unwrap();
+        }
+
     }
 }

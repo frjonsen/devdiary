@@ -11,9 +11,11 @@ slog-stdlog = "*"
 config = "*"
 log = "*"
 lazy_static = "0.2.2"
+hyper-native-tls = "0.2"
 
 [dependencies.iron]
 version = "*"
+features = ["native-tls-example"]
 
 [dependencies.logger]
 git = "https://github.com/iron/logger.git"

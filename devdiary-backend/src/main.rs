@@ -2,6 +2,7 @@ extern crate iron;
 extern crate time;
 extern crate logger;
 extern crate config;
+extern crate hyper_native_tls;
 #[macro_use]
 extern crate lazy_static;
 
@@ -12,11 +13,11 @@ extern crate slog_stdlog;
 #[macro_use]
 extern crate log;
 use std::sync::RwLock;
-use config::Config;
-use config_trait::DefaultConfig;
+use default_config::DefaultConfig;
+use hyper_native_tls::NativeTlsServer;
 
 mod server;
-mod config_trait;
+mod default_config;
 
 use std::io;
 use slog::DrainExt;
@@ -59,9 +60,7 @@ fn setup_logging() {
 }
 
 fn main() {
-
     setup_logging();
-    let arr = CONFIG.read().unwrap().get_array("logging.t");
     let s = server::Server::new();
     s.start();
 }

@@ -4,3 +4,8 @@ logs
 
 # VS Code
 .vs
+
+# OpenSSL
+*.key
+*.crt
+*.p12

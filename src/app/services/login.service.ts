@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch'
 
 @Injectable()
 export class LoginService {
@@ -28,7 +29,7 @@ export class LoginService {
       if(res.status === 202 || res.status === 204) {
         return true;
       }
-      else throw Error(res.text());
+      throw new Error(res.text());
     });
   }
 }

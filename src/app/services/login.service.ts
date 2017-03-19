@@ -6,22 +6,22 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class LoginService {
 
   constructor(private http: Http, private config: ConfigService) { }
 
-  login(username: string, password: string) : Observable<Boolean> {
-    let headers = new Headers();
-    headers.append("Content-Type", "application/json");
+  login(username: string, password: string): Observable<Boolean> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
 
-    let body = {
+    const body = {
       username: username,
       password: password
     };
-    return this.http.post(this.config.address + "/login", body, {
+    return this.http.post(this.config.address + '/login', body, {
       headers: headers
     })
     .retry(2)

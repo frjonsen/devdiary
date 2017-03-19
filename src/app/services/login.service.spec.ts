@@ -19,17 +19,18 @@ describe('LoginService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should login sucessfully', async(inject([LoginService, XHRBackend], (service: LoginService, mockBackend: MockBackend) => {
+  it('should login sucessfully',
+  async(inject([LoginService, XHRBackend], (service: LoginService, mockBackend: MockBackend) => {
 
-    mockBackend.connections.subscribe((connection) => {
+    mockBackend.connections.subscribe((connection: any) => {
       connection.mockRespond(new Response(new ResponseOptions({
         status: 204
       })));
     })
 
-    let creds = {
-      username: "someuse",
-      password: "adecentpassword"
+    const creds = {
+      username: 'someuse',
+      password: 'adecentpassword'
     };
     service.login(creds.username, creds.password).subscribe((res) => {
       expect(res).toBeTruthy(); },
@@ -37,16 +38,33 @@ describe('LoginService', () => {
       );
   })));
 
-  it('should throw error for missing parameter', async(inject([LoginService, XHRBackend], (service: LoginService, mockBackend: MockBackend) => {
+  it('should fail to login',
+  async(inject([LoginService, XHRBackend], (service: LoginService, mockBackend: MockBackend) => {
+
     mockBackend.connections.subscribe((connection: any) => {
       connection.mockRespond(new Response(new ResponseOptions({
-        status: 400,
-        body: "Missing parameter \"username\" or \"password\""
+        status: 422,
+        body: 'Incorrect username or password'
       })));
     });
 
-    service.login("someuser", "anincorrectpassword").subscribe(
-      (res) => { expect(res).toBeTruthy() },
-      (err: Error) => expect(err.message).toEqual("Missing parameter \"username\" or \"password\""));
+    service.login('someuser', 'anincorrect password').subscribe(
+      (res) => { expect(false).toBeTruthy() },
+      (err: Error) => expect(err.message).toEqual('Incorrect username or password')
+    );
+  })));
+
+  it('should throw error for missing parameter',
+  async(inject([LoginService, XHRBackend], (service: LoginService, mockBackend: MockBackend) => {
+    mockBackend.connections.subscribe((connection: any) => {
+      connection.mockRespond(new Response(new ResponseOptions({
+        status: 400,
+        body: 'Missing parameter "username" or "password"'
+      })));
+    });
+
+    service.login('someuser', 'anincorrectpassword').subscribe(
+      (res) => { expect(res).toBeTruthy(); },
+      (err: Error) => expect(err.message).toEqual('Missing parameter "username" or "password"'));
   })));
 });
